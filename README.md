@@ -118,8 +118,8 @@ ZSTR is a zero-terminated string. All values are encoded in little endian byte o
 Related Projects
 ----------------
 
- * [fezpak](https://github.com/panzi/fezpak)
- * [unvpk](https://bitbucket.org/panzi/unvpk)
+ * [fezpak](https://github.com/panzi/fezpak): pack, unpack, list and mount FEZ .pak archives
+ * [unvpk](https://bitbucket.org/panzi/unvpk): extract, list, check and mount Valve .vpk archives
 
 
 BSD License
