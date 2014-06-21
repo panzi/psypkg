@@ -654,7 +654,7 @@ def add_common_args(parser):
 		help='print verbose output')
 
 if __name__ == '__main__':
-#	try:
+	try:
 		main(sys.argv[1:])
-#	except Exception as exc:
-#		sys.stderr.write("%s\n" % exc)		
+	except Exception as exc:
+		sys.stderr.write("%s\n" % exc)
