@@ -7,9 +7,9 @@ files with my Steam copy of Psychonauts.
 
 Basic usage:
 
-	psypak.py list <archive>                 - list contens of .pak archive
-	psypak.py unpack <archive>               - extract .pkg archive
-	psypak.py mount <archive> <mount-point>  - mount archive as read-only file system
+	psypkg.py list <archive>                 - list contens of .pkg archive
+	psypkg.py unpack <archive>               - extract .pkg archive
+	psypkg.py mount <archive> <mount-point>  - mount archive as read-only file system
 
 The `mount` command depends on the [llfuse](https://code.google.com/p/python-llfuse/)
 Python package. If it's not available the rest is still working.
@@ -119,8 +119,8 @@ Related Projects
 ----------------
 
  * [fezpak](https://github.com/panzi/fezpak): pack, unpack, list and mount FEZ .pak archives
+ * [bgebf](https://github.com/panzi/bgebf): pack, unpack, list and mount Beyond Good and Evil .bf archives
  * [unvpk](https://bitbucket.org/panzi/unvpk): extract, list, check and mount Valve .vpk archives
-
 
 BSD License
 -----------
