@@ -119,7 +119,7 @@ Related Projects
 ----------------
 
  * [fezpak](https://github.com/panzi/fezpak): pack, unpack, list and mount FEZ .pak archives
- * [bgebf](https://github.com/panzi/bgebf): pack, unpack, list and mount Beyond Good and Evil .bf archives
+ * [bgebf](https://github.com/panzi/bgebf): unpack, list and mount Beyond Good and Evil .bf archives
  * [unvpk](https://bitbucket.org/panzi/unvpk): extract, list, check and mount Valve .vpk archives
 
 BSD License
