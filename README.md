@@ -99,13 +99,13 @@ ZSTR is a zero-terminated string. All values are encoded in little endian byte o
 	     4     4  uint32_t      version (1)
 	     8     4  uint32_t      file data offset
 	    12     4  uint32_t      number of files
-	    16     4  uint32_t      unknown data offset (end of file records)
-        20     4  uint32_t      ?
+	    16     4  uint32_t      directory records offset
+	    20     4  uint32_t      number od directory records
 	    24     4  uint32_t      name directory offset
 	    28     4  uint32_t      file type directory offset
 	    32   480  uint8_t[480]  zero-padding (maybe reversed for use in version >1?)
 
-### Record
+### File Record
 
 	Offset  Size  Type          Description
 	     0     1  uint8_t       null (0)
@@ -114,6 +114,17 @@ ZSTR is a zero-terminated string. All values are encoded in little endian byte o
 	     4     4  uint32_t      file name offset (relative to name direectory offset)
 	     8     4  uint32_t      file data offset
 	    12     4  uint32_t      file data size
+
+### Directory Record
+
+	Offset  Size  Type          Description
+	     0     1  char          one character of a directory name
+	     1     1  uint8_t       null (0)
+	     2     2  uint16_t      ?
+	     4     2  uint16_t      ?
+	     6     2  uint16_t      record id (incremental from 1)
+	     8     2  uint16_t      start file index (inclusive)
+	    10     2  uint16_t      end file index (exclusive)
 
 Related Projects
 ----------------
