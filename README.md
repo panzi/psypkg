@@ -132,7 +132,7 @@ Related Projects
  * [fezpak](https://github.com/panzi/fezpak): pack, unpack, list and mount FEZ .pak archives
  * [bgebf](https://github.com/panzi/bgebf): unpack, list and mount Beyond Good and Evil .bf archives
  * [unvpk](https://bitbucket.org/panzi/unvpk): extract, list, check and mount Valve .vpk archives
- * [u4pak](https://github.com/panzi/psypak): unpack, list and mount Unreal Engine 4 .pak archives
+ * [u4pak](https://github.com/panzi/u4pak): unpack, list and mount Unreal Engine 4 .pak archives
 
 BSD License
 -----------
