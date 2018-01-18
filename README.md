@@ -31,6 +31,12 @@ When the archive is mounted as a file system name conflict resolution is a bit d
 In this case `~number` is added between the file name and the extension. `number` is the
 first number that doesn't produce a confict.
 
+**NOTE:** I'm not quite sure about the file names. It could very well be that they are
+a bit buggy and not exactly the way they should be. For instance without special logic
+to prevent this I would extract absolute paths for some reason (like `lipsync/thaj000ht.pba`),
+and some names looks like they are missing a letter at the start (`uckerfish` -> `suckerfish`?
+`quirrel` -> `Squirrel`?). Maybe someone can find out the problem in my code?
+
 	┌────────────────────────────────┐
 	│                                │
 	│  Header                        │
