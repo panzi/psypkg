@@ -107,7 +107,8 @@ def read_index(stream):
 
 		is_sep = ch == b'/'
 		if is_sep:
-			dir_name_buffer.append(SEP)
+			if dir_name_buffer:
+				dir_name_buffer.append(SEP)
 		else:
 			dir_name_buffer.append(ch)
 
