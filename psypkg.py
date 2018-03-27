@@ -34,6 +34,8 @@ except ImportError:
 else:
 	HAS_LLFUSE = True
 
+HAS_STAT_NS = hasattr(os.stat_result, 'st_atime_ns')
+
 __all__ = 'read_index', 'unpack', 'unpack_files', 'print_list', 'mount'
 
 # for Python < 3.3 and Windows
@@ -391,7 +393,7 @@ if HAS_LLFUSE:
 			self.data.close()
 			self.archive.close()
 
-		def lookup(self, parent_inode, name):
+		def lookup(self, parent_inode, name, ctx):
 			try:
 				if name == DIR_SELF:
 					entry = self.inodes[parent_inode]
@@ -438,13 +440,18 @@ if HAS_LLFUSE:
 			attrs.st_gid     = arch_st.st_gid
 			attrs.st_blksize = arch_st.st_blksize
 			attrs.st_blocks  = 1 + ((attrs.st_size - 1) // attrs.st_blksize) if attrs.st_size != 0 else 0
-			attrs.st_atime   = arch_st.st_atime
-			attrs.st_mtime   = arch_st.st_mtime
-			attrs.st_ctime   = arch_st.st_ctime
+			if HAS_STAT_NS:
+				attrs.st_atime_ns = arch_st.st_atime_ns
+				attrs.st_mtime_ns = arch_st.st_mtime_ns
+				attrs.st_ctime_ns = arch_st.st_ctime_ns
+			else:
+				attrs.st_atime_ns = int(arch_st.st_atime * 1000)
+				attrs.st_mtime_ns = int(arch_st.st_mtime * 1000)
+				attrs.st_ctime_ns = int(arch_st.st_ctime * 1000)
 
 			return attrs
 
-		def getattr(self, inode):
+		def getattr(self, inode, ctx):
 			try:
 				entry = self.inodes[inode]
 			except KeyError:
@@ -461,7 +468,7 @@ if HAS_LLFUSE:
 				st_mode = 0o555 if type(entry) is Dir else 0o444
 				return (st_mode & mode) == mode
 
-		def opendir(self, inode):
+		def opendir(self, inode, ctx):
 			try:
 				entry = self.inodes[inode]
 			except KeyError:
@@ -489,7 +496,7 @@ if HAS_LLFUSE:
 		def releasedir(self, fh):
 			pass
 
-		def statfs(self):
+		def statfs(self, ctx):
 			attrs = llfuse.StatvfsData()
 
 			arch_st = self.arch_st
@@ -505,7 +512,7 @@ if HAS_LLFUSE:
 
 			return attrs
 
-		def open(self, inode, flags):
+		def open(self, inode, flags, ctx):
 			try:
 				entry = self.inodes[inode]
 			except KeyError:
@@ -596,7 +603,7 @@ if HAS_LLFUSE:
 
 			llfuse.init(ops, mountpt, args)
 			try:
-				llfuse.main(single=False)
+				llfuse.main()
 			finally:
 				llfuse.close()
 
